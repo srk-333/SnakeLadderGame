@@ -11,17 +11,15 @@ namespace SnakeLadderGame
         //Instance Variables.
         int position = 0;
         const int MAX_POSITION = 100;
-        const int MIN_POSITION = -1;
         const int LADDER = 1;
         const int SNAKE = 2;
         Random random = new Random();       // object of random class
-        List<int> number = new List<int>();
         //Method
         public void RunGame()
         {
             Console.WriteLine("Player position is: " + position);
             //Using While Loop to iterate Game till position reaches max position.
-            int roll = 0;
+            int diceCount = 0;
             while (position < MAX_POSITION)
             {
                 int diceValue = random.Next(1, 7);          //random number berween 1 to 6 for Dice Value.
@@ -32,8 +30,6 @@ namespace SnakeLadderGame
                         if (position <= MAX_POSITION && (position + diceValue) <= MAX_POSITION)
                         {
                             position += diceValue;
-                            Console.WriteLine("\nPosition of player in Game: " + position);
-
                         }
                         break;
                     case SNAKE:
@@ -45,9 +41,10 @@ namespace SnakeLadderGame
                     default:
                         break;
                 }
-                roll++;
-                Console.WriteLine("Dice Roll:{0} and Player Position:{1}", roll, position);
+                diceCount++;
+                Console.WriteLine("Dice Roll:{0} and Player Position:{1}", diceCount, position);
             }
+            Console.WriteLine("\nNumber of Dice played: "+diceCount+"\tPlayer Position: "+ position);
         }
     }
 }

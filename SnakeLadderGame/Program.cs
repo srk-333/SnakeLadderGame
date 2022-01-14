@@ -13,8 +13,8 @@ namespace SnakeLadderGame
             //Showing Welcome message on console
             Console.WriteLine("Welcome to Snake And Ladder Game Program\n");
             //Object creation of class. 
-            StartPosition startPosition = new StartPosition();
-            startPosition.RunGame();     //call method of class.
+            SnakeLadderGame game = new SnakeLadderGame();
+            game.RunGame();     //call method of class.
             Console.ReadLine();
         }
     }
