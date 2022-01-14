@@ -15,37 +15,39 @@ namespace SnakeLadderGame
         const int LADDER = 1;
         const int SNAKE = 2;
         Random random = new Random();       // object of random class
+        List<int> number = new List<int>();
         //Method
         public void RunGame()
         {
             Console.WriteLine("Player position is: " + position);
             //Using While Loop to iterate Game till position reaches max position.
-            int i = 0;
-            while( position <= MAX_POSITION )
+            int roll = 0;
+            while (position < MAX_POSITION)
             {
                 int diceValue = random.Next(1, 7);          //random number berween 1 to 6 for Dice Value.
                 int playCheck = random.Next(0, 3);          //Generating random value between 0 to 2 to control movement of player position
-                if (position <= MIN_POSITION)
+                switch (playCheck)
                 {
-                    position = 0;
-                }
-                else
-                {
-                    switch (playCheck)
-                    {
-                        case LADDER:
+                    case LADDER:
+                        if (position <= MAX_POSITION && (position + diceValue) <= MAX_POSITION)
+                        {
                             position += diceValue;
-                            break;
-                        case SNAKE:
+                            Console.WriteLine("\nPosition of player in Game: " + position);
+
+                        }
+                        break;
+                    case SNAKE:
+                        if (position > 0 && (position - diceValue) >= 0)
+                        {
                             position -= diceValue;
-                            break;
-                        default:
-                            break;
-                    }
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                i++;
+                roll++;
+                Console.WriteLine("Dice Roll:{0} and Player Position:{1}", roll, position);
             }
-            Console.WriteLine("Position after end of game: "+position);
         }
     }
 }
